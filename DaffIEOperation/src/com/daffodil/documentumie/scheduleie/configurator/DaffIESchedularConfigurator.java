@@ -69,11 +69,11 @@ public class DaffIESchedularConfigurator {
 		NodeList nodes = rootElement.getChildNodes();
 		for ( Node node = ((Node) nodes).getFirstChild(); node != null; node = node.getNextSibling()) {
 		
-			//System.out.println("node  name.. "+node.getNodeName());
+			System.out.println("node  name.. "+node.getNodeName());
 			logger.info("node  name.. "+node.getNodeName());
 				if (node instanceof Element){
 					try {
-						//System.out.println("set" + node.getNodeName());
+						System.out.println("set" + node.getNodeName());
 						logger.info("set" + node.getNodeName());	
 						if(node.getNodeName().equalsIgnoreCase("IScheduleConfigBean"))
 						{
@@ -95,6 +95,7 @@ public class DaffIESchedularConfigurator {
 					} 
 				}			
 		}
+		System.out.println(listEntries.size());
 		return listEntries;
 	}
 	public Object getScheduleDetails(String type, String fileName,int index) throws scheduleFileReaderException, IOException 
@@ -514,6 +515,7 @@ public class DaffIESchedularConfigurator {
 		}
 		Method m = null; 		
 		try {
+			System.out.println("File Name:"+fileName);
 			document = getXMLDocument(fileName);					
 		} catch (IOException e) {
 			throw e;
@@ -525,10 +527,11 @@ public class DaffIESchedularConfigurator {
 		 {
 			
 			logger.info("node  name.. "+node.getNodeName());
-
+			System.out.println("getAllScheduleDetails "+node.getNodeName());
 			if (node instanceof Element){
 				try {
 					logger.info("set" + node.getNodeName());	
+					System.out.println("set" + node.getNodeName());
 					if(node.getNodeName().equalsIgnoreCase("ScheduleImportConfigBean"))
 					{
 						configBean = new ScheduleImportConfigBean();
@@ -552,12 +555,16 @@ public class DaffIESchedularConfigurator {
 					}
 					else if(node.getNodeName().equalsIgnoreCase("ScheduleExportConfigBean"))
 					{
+						
 						configBean = new ScheduleExportConfigBean();
 						for(Node innernode =node.getFirstChild();innernode!= null;innernode = innernode.getNextSibling() )
 						{
-							//System.out.println("innernode"+innernode.getNodeName()+innernode.getTextContent().toString());								
+							if(!innernode.getNodeName().equalsIgnoreCase("#text"))
+							{
+							//System.out.println(innernode.getNodeName()+innernode.getTextContent().toString());			
 							m = objClass.getMethod("set" + innernode.getNodeName(), String.class);
-							m.invoke(configBean, innernode.getTextContent().toString());																
+							m.invoke(configBean, innernode.getTextContent().toString());
+							}
 						}	
 						lstSchedules.add(configBean);
 					}
@@ -575,6 +582,7 @@ public class DaffIESchedularConfigurator {
 			}
 			
 		 }		
+		System.out.println(" getAllScheduleDetails "+lstSchedules.size());
 		return lstSchedules;
 	}
 }

@@ -240,7 +240,7 @@ public class ImportProcessor {
 			}
 			if (isImportCancelled()) {
 				break;
-			} else if (haultProcessing <= 500) {// This hault Processing
+			} else if (haultProcessing <= 15000) {// This hault Processing
 												// condition is added for
 												// haulting execution after 500
 												// records

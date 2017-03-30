@@ -41,6 +41,8 @@ public class EScheduleSort implements Comparator<EScheduleSort> {
 
 	@Override
 	public int compare(EScheduleSort arg0, EScheduleSort arg1) {
+		System.out.println("Na:-"+arg0.getNextScheduleDate().getTime()+":"+arg1.getNextScheduleDate().getTime());
+		
 		if(arg0.getNextScheduleDate().getTime() - arg1.getNextScheduleDate().getTime()>=0)
 		{
 			return 1;

@@ -9,16 +9,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import java.util.List;
-
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
 import com.daffodil.documentumie.fileutil.logger.IELogger;
 import com.daffodil.documentumie.scheduleie.bean.IScheduleConfigBean;
-
 import com.daffodil.documentumie.scheduleie.bean.ScheduleImportConfigBean;
 import com.daffodil.documentumie.scheduleie.configurator.DaffIESchedularConfigurator;
 import com.daffodil.documentumie.scheduleie.controller.ScheduleImportController;
@@ -84,7 +81,10 @@ public class ImportSchedular implements Runnable{
 							Thread.sleep(diff);
 						}
 						ScheduleImportController scheduleImportController = new ScheduleImportController(scheduleToRun.getImportConfigBean(), scheduleToRun);
+						//Added By Naveen
+						//iScheduleList.remove(0);
 					}
+					//Naveen 01/07/2016
 					iScheduleList = updateSchedule(iScheduleList, scheduleToRun);
 					if(!checkAllEndDatesExpired(iScheduleList))
 					{
@@ -181,7 +181,12 @@ public class ImportSchedular implements Runnable{
 				sortObj =new IScheduleSort(i,ischeduleConfigBeanList.get(i),nextScheduledDate);
 				sortedList.add(sortObj);
 			}
-			Collections.sort(sortedList,sortObj);
+			Collections.sort(sortedList,new java.util.Comparator<IScheduleSort>(){
+				@Override
+				public int compare(IScheduleSort o1, IScheduleSort o2) {
+					return o1.getNextScheduleDate().compareTo(o2.getNextScheduleDate());
+				}});
+			
 			for (int i = 0; i < sortedList.size(); i++) {
 				sortObj = sortedList.get(i);
 				finalList.add(sortObj.getConfigBean());

@@ -20,18 +20,22 @@ public class DaffIEUtilityScheduler {
 	{
 		iSchedule = new ImportSchedular(); 
 		eSchedule = new ExportSchedular();
-		//doStart();
+		doStart();
 	}
 	public void doStart()
 	{
 		if(iSchedule!=null){
 			iSchedule.setRunning(true);
 			Thread importThread = new Thread(iSchedule,"Import Thread");
+			//importThread.setDaemon(true);
+			//Runtime.getRuntime().addShutdownHook(importThread);
 			importThread.start();
 		}
 		if(eSchedule!=null){		
 			eSchedule.setRunningExport(true);
-			Thread exportThread = new Thread(eSchedule,"Export Thread");			
+			Thread exportThread = new Thread(eSchedule,"Export Thread");	
+			//exportThread.setDaemon(true);
+			//Runtime.getRuntime().addShutdownHook(exportThread);
 			exportThread.start();
 		}
 	}	

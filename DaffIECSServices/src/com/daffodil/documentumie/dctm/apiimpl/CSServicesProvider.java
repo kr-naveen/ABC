@@ -12,6 +12,7 @@ import com.daffodil.documentumie.dctm.SessionHandler;
 import com.daffodil.documentumie.dctm.api.CSServices;
 import com.daffodil.documentumie.dctm.exception.DDfException;
 import com.daffodil.documentumie.filehandler.ContentFileHandler;
+import com.daffodil.documentumie.fileutil.logger.IELogger;
 import com.daffodil.documentumie.fileutil.properties.PropertyFileLoader;
 import com.documentum.com.DfClientX;
 import com.documentum.com.IDfClientX;
@@ -48,7 +49,7 @@ public class CSServicesProvider implements CSServices {
 	public CSServicesProvider() {
 		mSessionHandler = new SessionHandler();
 	}
-
+	///private IELogger logger=new IELogger();
 	public void login(String repoName, String userName, String password,
 			String domain) throws DDfException {
 		loginInfo[0] = repoName;
@@ -127,17 +128,21 @@ public class CSServicesProvider implements CSServices {
 
 		String dql = null;
 		if (superObjectTypeName == null) {
-			System.out.println("superObjectTypeName--->"+superObjectTypeName);
+			//System.out.println("superObjectTypeName--->"+superObjectTypeName);
+			//logger.writeLog("superObjectTypeName--->"+superObjectTypeName, logger.INFO);
 			dql = "Select distinct name from dm_type ORDER BY name";
 		} else {
-			System.out.println("ELSE CONDITION   superObjectTypeName--->"+superObjectTypeName);
+			//System.out.println("ELSE CONDITION   superObjectTypeName--->"+superObjectTypeName);
+			//logger.writeLog("ELSE CONDITION   superObjectTypeName--->"+superObjectTypeName,logger.INFO);
 			dql = "Select distinct name from dm_type where super_name='"
 					+ superObjectTypeName + "' ORDER BY name";
 		}
 		try {
 			// dql="Select distinct name from dm_type where super_name like 'obo_%' ORDER BY name";
 			objectTypeList = executeDQL(dql);
-			System.out.println("objectTypeList--->"+objectTypeList);
+			//System.out.println("objectTypeList--->"+objectTypeList);
+			//logger.writeLog("objectTypeList--->"+objectTypeList,logger.INFO);
+			
 		} catch (DDfException e) {
 			throw new DDfException("Exception while getting object type list "
 					+ e.getMessage() + e.getCause());
@@ -284,9 +289,8 @@ public class CSServicesProvider implements CSServices {
 			// List versList = versionList;
 			return versionList;
 		} catch (DfException e) {
-			throw new DDfException(
-					"Exception while getting All Version of object "
-							+ e.getMessage() + e.getCause());
+			throw new DDfException("Exception while getting All Version of object "
+		+ e.getMessage() + e.getCause());
 		}
 	}
 
@@ -406,22 +410,27 @@ public class CSServicesProvider implements CSServices {
 	public void exportObject(Object objId, String tempDir, String fileName,
 			String destinationPath) throws DDfException {
 		try {
-			System.out.println("TempDirPath" + tempDir);
-			System.out.println("fileName" + fileName);
+			//System.out.println("TempDirPath" + tempDir);
+			//System.out.println("fileName" + fileName);
+			
+			//logger.writeLog("TempDirPath" + tempDir,logger.INFO);
+			//logger.writeLog("fileName" + fileName,logger.INFO);
+			
 			IDfClientX clientx = new DfClientX();
 			IDfId id = clientx.getId((String) objId);
 			IDfSysObject docSysObject = null;
 			docSysObject = (IDfSysObject) mSessionHandler.getIDfSession()
 					.getObject(id);
 			if (!docSysObject.isCheckedOut()) {
-				if (docSysObject.getContentSize() != 0
-						&& docSysObject.getString("a_content_type") != null) {
+//				if (docSysObject.getContentSize() != 0
+//						&& docSysObject.getString("a_content_type") != null) {
 					docSysObject.getFile(tempDir + File.separator + fileName);
-					System.out.println(tempDir + File.separator + fileName);
+					//System.out.println(tempDir + File.separator + fileName);
+					//logger.writeLog(tempDir + File.separator + fileName, logger.INFO);
 					contentFH.saveFile(tempDir + File.separator + fileName,
 							destinationPath);
 					contentFH.deleteFile(tempDir + File.separator + fileName);
-				}
+			//	}
 			}
 
 		} catch (DfException e) {
@@ -441,7 +450,7 @@ public class CSServicesProvider implements CSServices {
 
 	public Object[] validateObject(Map metadataMap, String objType)
 			throws DDfException {
-		System.out.println("CSServicesProvider.validateObject()");
+		//System.out.println("CSServicesProvider.validateObject()");
 		IDfPersistentObject pObj = null;
 		IDfValidator v = null;
 		String validMsg = "";
@@ -550,7 +559,7 @@ public class CSServicesProvider implements CSServices {
 		if (validMsg != null && !"".equals(validMsg)) {
 			flag = false;
 		}
-		System.out.println("validMsg : " + validMsg);
+		//System.out.println("validMsg : " + validMsg);
 		return new Object[] { flag, validMsg };
 	}
 
@@ -635,7 +644,8 @@ public class CSServicesProvider implements CSServices {
 				String typeStr = type.getSuperName();
 				subType = typeStr;
 			}
-			System.out.println("objectTypeHierarchy : " + objectType);
+			//System.out.println("objectTypeHierarchy : " + objectType);
+			//logger.writeLog("objectTypeHierarchy : " + objectType, logger.INFO);
 			return objectType;
 		} catch (DfException e) {
 			throw new DDfException("Exception while checking object hierarchy "
@@ -681,21 +691,52 @@ public class CSServicesProvider implements CSServices {
 
 	private String createNewSysOrChildObj(
 			ImportProcessorBean importProcessorBean) throws DDfException {
-		System.out.println("CSServicesProvider.createNewSysOrChildObj()");
+		//System.out.println("CSServicesProvider.createNewSysOrChildObj()");
+		//logger.writeLog("CSServicesProvider.createNewSysOrChildObj()", logger.INFO);
 		String srcPath = (String) importProcessorBean.getMetadataMap().get("file_source_location__");
 		String objectId = null;
 		try {
 			IDfSysObject sysObject = (IDfSysObject) mSessionHandler
 					.getIDfSession().newObject(
 							importProcessorBean.getObjectType());
-			updateSysObject(
+			//Start Of Old code Commented By Naveen_20-05-2016
+		/*	updateSysObject(
 					(String) importProcessorBean.getMetadataMap().get(
 							"r_folder_path"),
 					importProcessorBean.getMetadataMap(), srcPath, sysObject,
 					false, importProcessorBean.isSupportingDoc());
 			System.out.println("========="
 					+ (String) importProcessorBean.getMetadataMap().get(
-							"r_folder_path"));
+							"r_folder_path"));*/
+			//End Of Old Code Commented By Naveen_20-05-2016
+			//Start of New Code Added By Naveen_20-05-2016
+			//Start xyz1 by naveen
+			boolean check=CheckupdateSysObject(
+			importProcessorBean.getMetadataMap(), srcPath, sysObject);
+			//System.out.println("--This is Middle"+check);
+			//logger.writeLog("--This is Middle"+check, logger.INFO);
+			
+			if(check==false){
+			updateSysObject(
+					(String) importProcessorBean.getMetadataMap().get(
+							"r_folder_path"),
+					importProcessorBean.getMetadataMap(), srcPath, sysObject,
+					false, importProcessorBean.isSupportingDoc());
+			//System.out.println("---This is Naveen Stop");
+			//System.out.println("========="+ (String) importProcessorBean.getMetadataMap().get("r_folder_path"));
+			//logger.writeLog("========="+ (String) importProcessorBean.getMetadataMap().get("r_folder_path"),logger.INFO);
+			}
+			else
+			{
+				updateVersionSysObject((String) importProcessorBean.getMetadataMap().get(
+						"r_folder_path"),
+				importProcessorBean.getMetadataMap(), srcPath, sysObject,
+				false, importProcessorBean.isSupportingDoc());
+		//System.out.println("---This is Naveen Stop");
+		//System.out.println("========="+ (String) importProcessorBean.getMetadataMap().get("r_folder_path"));
+				//logger.writeLog("========="+ (String) importProcessorBean.getMetadataMap().get("r_folder_path"), logger.INFO);
+			}
+			//End of New Code Added By Naveen_20-05-2016
 
 			objectId = sysObject.getObjectId().toString();
 		} catch (DfException e) {
@@ -703,10 +744,124 @@ public class CSServicesProvider implements CSServices {
 					+ importProcessorBean.getObjectType() + "" + e.getMessage()
 					+ e.getCause());
 		}
-		System.out.println("object id in cs : " + objectId);
+		//System.out.println("object id in cs : " + objectId);
+		//logger.writeLog("object id in cs : " + objectId, logger.INFO);
 		return objectId;
 	}
 
+	//Start of New Methods Added By Naveen_20-05-2016
+	private boolean CheckupdateSysObject(Map map,String srcPath, IDfSysObject sysObject) throws DDfException {
+		String objectId = null;
+		try {
+			//System.out.println((String) map.get("object_name"));
+			sysObject.setObjectName((String) map.get("object_name"));
+			String extn = null;
+
+			if (srcPath != null && !"".equals(srcPath.trim())) {
+				extn = getDocumentumExtension(srcPath.substring((srcPath
+						.lastIndexOf(".") + 1)));
+           // System.out.println(extn);
+            //System.out.println((String) sysObject.getType().getName());
+           // System.out.println((String) map.get("r_folder_path"));
+			sysObject.setFileEx(srcPath, extn, 0, null);
+			List list;
+			String dql = "select * from "+sysObject.getType().getName()+" where object_name= '"+(String) map.get("object_name")+"'  "
+					+ "and a_content_type='"+extn+"' and folder('"+(String) map.get("r_folder_path")+"')";
+			try {
+				list = executeDQL(dql);
+			} catch (DDfException e) {
+				throw new DDfException(
+						"Exception while getting documentum extension for "
+								+ e.getMessage()
+								+ e.getCause());
+			}
+			
+			if (list.size() > 0) {
+				return true;
+			}
+			}
+
+		} catch (DfException e) {
+			throw new DDfException(e.getMessage() + " " + e.getCause());
+		}
+		return false;
+	}
+	private String updateVersionSysObject(String destFolderPath, Map map,
+			String srcPath, IDfSysObject sysObject, boolean updateExisting,
+			boolean isSupportingDoc) throws DDfException {
+		String objectId = null;
+		try {
+			sysObject.setObjectName((String) map.get("object_name"));
+			String extn = null;
+
+			if (srcPath != null && !"".equals(srcPath.trim())) {
+				extn = getDocumentumExtension(srcPath.substring((srcPath
+						.lastIndexOf(".") + 1)));
+				sysObject.setContentType(extn);
+
+				sysObject.setFileEx(srcPath, extn, 0, null);
+				if (!updateExisting) {
+					sysObject.link(destFolderPath);
+				}
+				/*
+				 * IDfACL aclObj =
+				 * getSessionHandler().getIDfSession().getACL(getSessionHandler
+				 * ().getIDfSession().getDocbaseOwnerName(), (String)
+				 * map.get("acl_name")); sysObject.setACL(aclObj);
+				 */
+				/*
+				 * sysObject.save(); System.out.println("aftre first save ");
+				 */
+				//System.out.println("In updateSysObject of CS Service Provider"+ sysObject);
+				updateAttribute(map, sysObject);
+				modifyFile(map,srcPath,sysObject, extn);
+				
+			}
+
+		} catch (DfException e) {
+			throw new DDfException(e.getMessage() + " " + e.getCause());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return objectId;
+	}
+	  private boolean modifyFile(Map map,String srcPath,IDfSysObject sysObject,String extn) throws Exception {
+		  IDfSession session = null;
+			
+			try {
+				session = mSessionHandler.getIDfSession();
+			} catch (DDfException e) {
+				throw new DDfException(
+						"Exception while geting attributes from Rpository fro export process. "
+								+ e.getMessage() + e.getCause());
+			}
+		  IDfCollection collection = null; // Collection for the result
+
+			IDfQuery q = getClientX().getQuery(); // Create query object
+			String dql = "select * from "+sysObject.getType().getName()+" where object_name= '"+(String) map.get("object_name")+"'  "
+					+ "and a_content_type='"+extn+"' and folder('"+(String) map.get("r_folder_path")+"')";
+			q.setDQL(dql);
+
+			try {
+				collection = q.execute(session, IDfQuery.DF_READ_QUERY);
+			} catch (DfException e) {
+				throw new DDfException(
+						"Exception while geting attributes from Rpository fro export process. "
+								+ e.getMessage() + e.getCause());
+			}
+            collection.next();
+			IDfSysObject document = (IDfSysObject)session.getObject(collection.getId("r_object_id"));
+	        document.checkout();
+	        document.checkout();
+	        document.setFile(srcPath);	      
+	        document.checkin(false, null); // When a null version label is provided,
+	                                    // DFC automatically gives the new version
+	                                    // an implicit version label (1.1, 1.2, etc.)
+	                                 // and the symbolic label "CURRENT". 
+	        return true;
+	    }
+	//End of New Methods Added By Naveen_20-05-2016
 	private String updateSysObject(String destFolderPath, Map map,
 			String srcPath, IDfSysObject sysObject, boolean updateExisting,
 			boolean isSupportingDoc) throws DDfException {
@@ -733,8 +888,7 @@ public class CSServicesProvider implements CSServices {
 				/*
 				 * sysObject.save(); System.out.println("aftre first save ");
 				 */
-				System.out.println("In updateSysObject of CS Service Provider"
-						+ sysObject);
+				//System.out.println("In updateSysObject of CS Service Provider"+ sysObject);
 				updateAttribute(map, sysObject);
 				sysObject.save();
 			}
@@ -747,8 +901,8 @@ public class CSServicesProvider implements CSServices {
 
 	private void updateAttribute(Map map, IDfPersistentObject perObj)
 			throws DDfException {
-		System.out.println("CSServicesProvider.updateAttribute()");
-		System.out.println("Map size is:" + map.size());
+		//System.out.println("CSServicesProvider.updateAttribute()");
+		//System.out.println("Map size is:" + map.size());
 		for (Iterator iterator = map.entrySet().iterator(); iterator.hasNext();) {
 			Map.Entry entry = (Map.Entry) iterator.next();
 			if (entry.getKey() != null) { // if column name is not null
@@ -859,8 +1013,207 @@ public class CSServicesProvider implements CSServices {
 		}
 		return attrtype;
 	}
-
+	//6/15/2016 start naveen editing place
 	public List executeDQLObject(String dqlString, String objectType)
+				throws DDfException {
+		
+			List list = new ArrayList();
+			IDfSession session = null;
+			IDfType type = null;
+			IDfCollection mcollection=null;
+			try {
+				session = mSessionHandler.getIDfSession();
+				type = session.getType(objectType);
+				//System.out.println("Selected type--->"+type+"--objectType--"+objectType);
+				String dql ="Select r_object_id from "+objectType;
+				IDfQuery ql=getClientX().getQuery();
+				ql.setDQL(dql);
+				mcollection=ql.execute(session, IDfQuery.DF_READ_QUERY);
+			} catch (DfException e) {
+				throw new DDfException(	"-------Exception while geting attributes from Rpository for export process. "
+								+ e.getMessage() + e.getCause());
+			} 
+			
+			if(mcollection!=null){
+				try {
+					while(mcollection.next()){
+						String object_id=mcollection.getString("r_object_id");
+						//System.out.println(object_id);
+						String sdql="";
+						if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(dqlString," where")){
+							 sdql=dqlString+" And (r_object_id='"+object_id+"')";
+						}
+						else
+						{
+							sdql=dqlString+" Where (r_object_id='"+object_id+"')";
+						}
+						try {
+							IDfQuery q = getClientX().getQuery(); // Create query object
+					      //  System.out.println("created query object");
+							q.setDQL(sdql);
+							IDfCollection collection = q.execute(session, IDfQuery.DF_READ_QUERY);
+							
+							while (collection.next()) {
+								int counter = collection.getAttrCount();
+								HashMap map = new HashMap();
+							//	System.out.println("No of attributes----"+counter);
+								for (int i = 0; i < counter; i++) {
+								try{
+									IDfAttr attr = collection.getAttr(i);
+									String attrName = attr.getName();
+									if (type.isTypeAttrRepeating(attrName)) {
+										String repeatValue = collection.getAllRepeatingStrings(attrName, "#");
+										map.put(attrName, repeatValue);
+									} else {							
+											map.put(attrName, collection.getString(attrName));	
+									}
+									}catch (com.documentum.fc.client.impl.typeddata.NoSuchAttributeException e) {
+										//System.out.println(e.getMessage()+"-"+collection.getAttr(0).getName()+"-"+collection.getString(collection.getAttr(0).getName()));
+									}
+								}
+								list.add(map);
+								
+							}
+							collection.close();							
+						} catch (Exception e) {
+							//System.out.println("EXCEPTION------>"+e);
+							throw new DDfException(
+									"++++++++++Exception while geting attributes from Rpository fro export process. "
+											+ e.getMessage() + e.getCause());
+						}
+					}
+					mcollection.close();				
+					//System.out.println("LIST-----"+list.size());
+					return list;
+				} catch (DfException e) {
+					System.out.println(this.getClass().getName()+"="+e.getMessage());
+				}
+			}
+
+			return list;
+
+		}
+
+	//6/15/2016 end Naveen editing place
+	
+	//6/24/2016
+	@Override
+	 public int getTotalObject(String objectType) throws DDfException {
+		IDfSession session = null;
+		IDfType type = null;
+		IDfCollection mcollection=null;
+		try {
+			session = mSessionHandler.getIDfSession();
+			type = session.getType(objectType);
+			//System.out.println("Selected type--->"+type+"--objectType--"+objectType);
+			String dql ="Select count(*) from "+objectType;
+			IDfQuery ql=getClientX().getQuery();
+			ql.setDQL(dql);
+			mcollection=ql.execute(session, IDfQuery.DF_READ_QUERY);
+			if(mcollection.next()){
+				int i=mcollection.getInt(mcollection.getAttr(0).getName());
+				return i;
+			}
+		} catch (DfException e) {
+			throw new DDfException(	"-------Exception while geting attributes from Rpository for export process. "
+							+ e.getMessage() + e.getCause());
+		} 
+
+		return 0;
+	}
+	@Override
+	public List executeDQLObject(String dqlString, String objectType,
+			int lower, int upper) throws DDfException {
+		List list = new ArrayList();
+		IDfSession session = null;
+		IDfType type = null;
+		IDfCollection mcollection=null;
+		try {
+			session = mSessionHandler.getIDfSession();
+			type = session.getType(objectType);
+			//System.out.println("Selected type--->"+type+"--objectType--"+objectType);
+			String dql ="Select r_object_id from "+objectType;
+			IDfQuery ql=getClientX().getQuery();
+			ql.setDQL(dql);
+			mcollection=ql.execute(session, IDfQuery.DF_READ_QUERY);
+		} catch (DfException e) {
+			throw new DDfException(	"-------Exception while geting attributes from Rpository for export process. "
+							+ e.getMessage() + e.getCause());
+		} 
+		int Rcounter=0;
+		if(mcollection!=null){
+			try {
+				while(mcollection.next()){
+		//Start of Logic
+				if(Rcounter<lower ||Rcounter>upper)	{
+					Rcounter++;
+					continue;
+				}
+				else
+				{
+					String object_id=mcollection.getString("r_object_id");
+					//System.out.println(object_id);
+					String sdql="";
+					if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(dqlString," where")){
+						 sdql=dqlString+" And (r_object_id='"+object_id+"')";
+					}
+					else
+					{
+						sdql=dqlString+" Where (r_object_id='"+object_id+"')";
+					}
+					try {
+						IDfQuery q = getClientX().getQuery(); // Create query object
+				      //  System.out.println("created query object");
+						q.setDQL(sdql);
+						IDfCollection collection = q.execute(session, IDfQuery.DF_READ_QUERY);
+						
+						while (collection.next()) {
+							int counter = collection.getAttrCount();
+							HashMap map = new HashMap();
+						//	System.out.println("No of attributes----"+counter);
+							for (int i = 0; i < counter; i++) {
+							try{
+								IDfAttr attr = collection.getAttr(i);
+								String attrName = attr.getName();
+								if (type.isTypeAttrRepeating(attrName)) {
+									String repeatValue = collection.getAllRepeatingStrings(attrName, "#");
+									map.put(attrName, repeatValue);
+								} else {							
+										map.put(attrName, collection.getString(attrName));	
+								}
+								}catch (com.documentum.fc.client.impl.typeddata.NoSuchAttributeException e) {
+									//System.out.println(e.getMessage()+"-"+collection.getAttr(0).getName()+"-"+collection.getString(collection.getAttr(0).getName()));
+								}
+							}
+							list.add(map);
+							
+						}
+						collection.close();							
+					} catch (Exception e) {
+						//System.out.println("EXCEPTION------>"+e);
+						throw new DDfException(
+								"++++++++++Exception while geting attributes from Rpository fro export process. "
+										+ e.getMessage() + e.getCause());
+					}
+		
+				}
+		//end of Logic	
+				Rcounter++;
+				}
+				mcollection.close();				
+				System.out.println("LIST-----"+list.size());
+				return list;
+			} catch (DfException e) {
+				System.out.println(this.getClass().getName()+"="+e.getMessage());
+			}
+		}
+
+		return list;
+
+	}
+	//6/24/2016
+//Old Code 6/15/2016
+/*	public List executeDQLObject(String dqlString, String objectType)
 			throws DDfException {
 		List list = new ArrayList();
 		IDfSession session = null;
@@ -868,58 +1221,72 @@ public class CSServicesProvider implements CSServices {
 		try {
 			session = mSessionHandler.getIDfSession();
 			type = session.getType(objectType);
+			System.out.println("Selected type--->"+type+"--objectType--"+objectType);
 		} catch (DfException e) {
-			throw new DDfException(
-					"Exception while geting attributes from Rpository fro export process. "
+			throw new DDfException(	"-------Exception while geting attributes from Rpository for export process. "
 							+ e.getMessage() + e.getCause());
-		} catch (DDfException e) {
-			throw new DDfException(
-					"Exception while geting attributes from Rpository fro export process. "
-							+ e.getMessage() + e.getCause());
-		}
+		} 
 		IDfCollection collection = null; // Collection for the result
-
 		IDfQuery q = getClientX().getQuery(); // Create query object
+        System.out.println("created query object");
 		q.setDQL(dqlString);
-
+	
+		System.out.println(dqlString);
+		
 		try {
 			collection = q.execute(session, IDfQuery.DF_READ_QUERY);
+			System.out.println("*collection*"+collection);
 		} catch (DfException e) {
 			throw new DDfException(
-					"Exception while geting attributes from Rpository fro export process. "
+					"****Exception while geting attributes from Rpository during export process. "
 							+ e.getMessage() + e.getCause());
 		}
 
 		try {
-
+			
 			while (collection.next()) {
 				int counter = collection.getAttrCount();
 				// map.clear();
 				HashMap map = new HashMap();
-
+				System.out.println("No of attributes----"+counter);
 				for (int i = 0; i < counter; i++) {
+					
+					try{
 					IDfAttr attr = collection.getAttr(i);
 					String attrName = attr.getName();
+					//System.out.println("attrName*******"+attrName);
 					if (type.isTypeAttrRepeating(attrName)) {
-						String repeatValue = collection.getAllRepeatingStrings(
-								attrName, "#");
+						//System.out.println("inside if");
+						String repeatValue = collection.getAllRepeatingStrings(attrName, "#");
 						map.put(attrName, repeatValue);
 					} else {
-						map.put(attrName, collection.getString(attrName));
+						
+							System.out.println("inside else------"+"<<<<---attrName---->>>"+attrName+"***********collection.getString(attrName)*************"+collection.getString(attrName));
+							map.put(attrName, collection.getString(attrName));
+						
+						
+					}
+					}catch (com.documentum.fc.client.impl.typeddata.NoSuchAttributeException e) {
+						System.out.println(e.getMessage()+"-"+collection.getAttr(0).getName()+"-"+collection.getString(collection.getAttr(0).getName()));
 					}
 				}
 				list.add(map);
+				
 			}
+			
 			collection.close();
+			System.out.println("LIST-----"+list);
 			return list;
-		} catch (DfException e) {
+		} catch (Exception e) {
+			System.out.println("EXCEPTION------>"+e);
 			throw new DDfException(
-					"Exception while geting attributes from Rpository fro export process. "
+					"++++++++++Exception while geting attributes from Rpository fro export process. "
 							+ e.getMessage() + e.getCause());
 		}
 
 	}
-
+	*/
+//Old Code 6/15/2016
 	public String getFileNameByID(Object docId, boolean version,
 			String extension) throws DDfException {
 		String fileName = "";
@@ -955,12 +1322,12 @@ public class CSServicesProvider implements CSServices {
 	public String importSysOrChild(ImportProcessorBean importProcessorBean)
 			throws DDfException {
 		String desPath = (String) importProcessorBean.getMetadataMap().get("r_folder_path");// destFolderPath.subSequence(0,
-		System.out.println("Dest path*******" + desPath);
+		//System.out.println("Dest path*******" + desPath);
 		// destFolderPath.lastIndexOf("/")-2);
 		String srcPath = (String) importProcessorBean.getMetadataMap().get("file_source_location__");
-		System.out.println("file_source_location__Path   " + srcPath);
+		//System.out.println("file_source_location__Path   " + srcPath);
 		srcPath = contentFH.getFile(srcPath);
-		System.out.println("Source Path By Pallavi is" + srcPath);
+		//System.out.println("Source Path By Pallavi is" + srcPath);
 		importProcessorBean.getMetadataMap().put("file_source_location__",srcPath);
 
 		// Added by Shubhra
@@ -979,7 +1346,7 @@ public class CSServicesProvider implements CSServices {
 		// IDfId id = getIdByPath(desPath, (String)
 		// importProcessorBean.getMetadataMap().get("object_name"));
 
-		System.out.println("Object's ID in importSysOrChild methos: " + id);
+		//System.out.println("Object's ID in importSysOrChild methos: " + id);
 		String objectId = null;
 		if (id == null) { // .isNull()) {
 			objectId = createNewSysOrChildObj(importProcessorBean);
@@ -1195,14 +1562,14 @@ public class CSServicesProvider implements CSServices {
 	 */
 	public void createAcl(String aclName, String formType, String region,
 			String amcId) throws DDfException {
-		System.out.println("CSServicesProvider.createAcl()");
+		//System.out.println("CSServicesProvider.createAcl()");
 		try {
 			IDfACL aclObj = getSessionHandler().getIDfSession().getACL(
 					getSessionHandler().getIDfSession().getDocbaseOwnerName(),
 					aclName);
-			System.out.println("aclObj " + aclObj);
+			//System.out.println("aclObj " + aclObj);
 			if (aclObj == null) {
-				System.out.println("acl obj is null");
+				//System.out.println("acl obj is null");
 				aclObj = (IDfACL) getSessionHandler().getIDfSession()
 						.newObject("dm_acl");
 				aclObj.setACLClass(3);
@@ -1236,7 +1603,7 @@ public class CSServicesProvider implements CSServices {
 	private void setPermissions(IDfACL createdAcl, String formType,
 			String regionshortname, String amcShortName) throws DfException,
 			DDfException {
-		System.out.println("CSServicesProvider.setPermissions() " + formType);
+		//System.out.println("CSServicesProvider.setPermissions() " + formType);
 		String groupName = null;
 		groupName = "dm_world";
 		createdAcl.grant(groupName, 1, null);
@@ -1334,8 +1701,7 @@ public class CSServicesProvider implements CSServices {
 					+ e.getMessage() + e.getCause());
 		}
 
-		System.out.println(" ObjectType value in CSServicesProvider : "
-				+ ObjectType);
+		//System.out.println(" ObjectType value in CSServicesProvider : "+ ObjectType);
 
 		String mobile_no = null;
 		if (ObjectType.contains("cust")) {
@@ -1371,7 +1737,7 @@ public class CSServicesProvider implements CSServices {
 			if (co != null && co.next()) {
 				// String ss = co.getString("r_object_id");
 				ObjId = new DfId(co.getString("r_object_id"));
-				System.out.println("r_object_id in getObject method :" + ObjId);
+				//System.out.println("r_object_id in getObject method :" + ObjId);
 				/*
 				 * if(ss!=null && !(ss.equalsIgnoreCase(""))){
 				 * sysObject=(IDfSysObject)session.getObject( new
@@ -1390,5 +1756,6 @@ public class CSServicesProvider implements CSServices {
 		}
 		return ObjId;
 	}
+	
 
 }

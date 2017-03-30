@@ -27,7 +27,7 @@ public class IELogger {
 	
 	
 	public IELogger() {
-		System.out.println("inside IELogger default constructor.");
+		//System.out.println("inside IELogger default constructor.");
 		
 		initlize();
 	}

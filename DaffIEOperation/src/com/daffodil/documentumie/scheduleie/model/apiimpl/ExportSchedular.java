@@ -9,12 +9,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import java.util.List;
-
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import com.daffodil.documentumie.fileutil.logger.IELogger;
 import com.daffodil.documentumie.scheduleie.bean.EScheduleConfigBean;
@@ -53,6 +52,7 @@ public class ExportSchedular implements Runnable {
 			logger.info(e1.getMessage());
 			runningExport = false;
 		}
+	
 		while (runningExport) {
 			try {	
 				long tempMod = getScheduleLastModifiedDate();
@@ -63,7 +63,10 @@ public class ExportSchedular implements Runnable {
 				if(eScheduleList!=null && eScheduleList.size()>0)
 				{
 					EScheduleConfigBean  scheduleToRun = eScheduleList.get(0);
+					System.out.println(scheduleToRun.getHours()+scheduleToRun.getMinute()+"====="+scheduleToRun.getNexSchedule());
+					try{Thread.sleep(1000);}catch(Exception e){}
 					boolean isValid = validateNextSchedule(scheduleToRun);
+					
 					if(isValid)
 					{
 						String nextSchedule = scheduleToRun.getNexSchedule();
@@ -81,7 +84,11 @@ public class ExportSchedular implements Runnable {
 							Thread.sleep(diff);
 						}
 						System.out.println("Thread Wakeup...............");
+						//Naveen hided 30-06-2016 
 						ScheduleExportController scheduleImportController = new ScheduleExportController(scheduleToRun.getExportConfigBean(), scheduleToRun);
+						//Added By Naveen
+						//eScheduleList.remove(0);
+						//Naveen hided 30-06-2016
 					}
 					eScheduleList = updateSchedule(eScheduleList, scheduleToRun);
 					if(!checkAllEndDatesExpired(eScheduleList))
@@ -90,7 +97,7 @@ public class ExportSchedular implements Runnable {
 						System.out.println("*****  All the Export Dates have been Expired*****");
 						runningExport = false;
 					}
-				}
+									}
 				
 			}catch (/*IO*/Exception e) {
 				System.out.println(e.getMessage());
@@ -126,36 +133,36 @@ public class ExportSchedular implements Runnable {
 	{
 		if(eScheduleList!=null && eScheduleList.size()>0)
 		{
-			boolean hasSet=false;
+			//boolean hasSet=false;
 			eScheduleList.remove(0);// Removing the first element from the list
 			/*
 			 * The below code is adding one day to the  schedule which had run last time
 			 */
-			Date currentRunDate = convertIntoDate(scheduleToRun.getNexSchedule());
-			long currentRunDateTime =  currentRunDate.getTime();
-			Long oneDay = (long) (24*60*60*1000);
-			currentRunDateTime = currentRunDateTime+oneDay;
-			currentRunDate = new Date(currentRunDateTime);
-			String modifiedDate = convertDateIntoString(currentRunDate);
-			for(int i=0;i<eScheduleList.size();i++)
-			{
-				EScheduleConfigBean bean = eScheduleList.get(i);
-				String nextDateString =bean.getNexSchedule();
-				Date nextScheduleDate = convertIntoDate(nextDateString);
-				if(nextScheduleDate.compareTo(currentRunDate)>0)
-				{					
-					scheduleToRun.setNexSchedule(modifiedDate);
-					eScheduleList.add(i, scheduleToRun);
-					hasSet=true;
-					break;
-				}
-			}
-			if(!hasSet)
-			{
-				scheduleToRun.setNexSchedule(modifiedDate);
-				int numElement = eScheduleList.size();
-				eScheduleList.add(numElement, scheduleToRun);							
-			}			
+//			Date currentRunDate = convertIntoDate(scheduleToRun.getNexSchedule());
+//			long currentRunDateTime =  currentRunDate.getTime();
+//			Long oneDay = (long) (24*60*60*1000);
+//			currentRunDateTime = currentRunDateTime+oneDay;
+//			currentRunDate = new Date(currentRunDateTime);
+//			String modifiedDate = convertDateIntoString(currentRunDate);
+//			for(int i=0;i<eScheduleList.size();i++)
+//			{
+//				EScheduleConfigBean bean = eScheduleList.get(i);
+//				String nextDateString =bean.getNexSchedule();
+//				Date nextScheduleDate = convertIntoDate(nextDateString);
+//				if(nextScheduleDate.compareTo(currentRunDate)>0)
+//				{					
+//					scheduleToRun.setNexSchedule(modifiedDate);
+//					eScheduleList.add(i, scheduleToRun);
+//					hasSet=true;
+//					break;
+//				}
+//			}
+//			if(!hasSet)
+//			{
+//				scheduleToRun.setNexSchedule(modifiedDate);
+//				int numElement = eScheduleList.size();
+//				eScheduleList.add(numElement, scheduleToRun);							
+//			}			
 		}
 		return eScheduleList;
 	}
@@ -202,7 +209,7 @@ public class ExportSchedular implements Runnable {
 		{	
 			/*String nextSchedule = ibean.getNexSchedule();
 			System.out.println("Previous Next Schedule"+nextSchedule);*/
-			getUpdatedNextSchedule(escheduleConfigBeanList.get(i));
+		//	getUpdatedNextSchedule(escheduleConfigBeanList.get(i));
 			//System.out.println("Updated Next Schedule"+ibean.getNexSchedule());
 		}
 		try {
@@ -213,15 +220,19 @@ public class ExportSchedular implements Runnable {
 				sortObj =new EScheduleSort(i,escheduleConfigBeanList.get(i),nextScheduledDate);
 				sortedList.add(sortObj);
 			}
-			Collections.sort(sortedList,sortObj);
+			Collections.sort(sortedList,new java.util.Comparator<EScheduleSort>(){
+				@Override
+				public int compare(EScheduleSort o1, EScheduleSort o2) {
+					return o1.getNextScheduleDate().compareTo(o2.getNextScheduleDate());
+				}});
 			for (int i = 0; i < sortedList.size(); i++) {
 				sortObj = sortedList.get(i);
 				finalList.add(sortObj.getConfigBean()); 
-				
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Naveen Time:"+finalList.get(0).getStartDate());
 		return finalList;
 	}
 	private List<EScheduleConfigBean> getSchedulesList() throws IOException
@@ -236,8 +247,11 @@ public class ExportSchedular implements Runnable {
 		fileName = new String(fileDir + "/" + "ScheduleExportConfigBean" + ".xml");
 		ArrayList<ScheduleExportConfigBean> scheduleDetailList = (ArrayList<ScheduleExportConfigBean>) readAllScheduleDetail("Export", fileName);
 		for (int i = 0; i < escheduleConfigBeanList.size(); i++) {
+			//System.out.println("Naveen:-"+scheduleDetailList.get(i).getScheduleName());
+			System.out.println("Naveen :-"+scheduleDetailList.get(i).getScheduleName());
 			 escheduleConfigBeanList.get(i).setExportConfigBean(scheduleDetailList.get(i));
-			 //String nextScheduleDate = ischeduleConfigBeanList.get(i).getNexSchedule();
+			 //nextScheduleDate = escheduleConfigBeanList.get(i).getNexSchedule();
+			// System.out.println(nextScheduleDate);
 		}
 		return escheduleConfigBeanList;
 	}
@@ -251,6 +265,7 @@ public class ExportSchedular implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		 System.out.println("readAllScheduleDetail "+lst.size());
 		 return lst;
 	 }
 	private String getDocumentumHome() 
@@ -265,7 +280,7 @@ public class ExportSchedular implements Runnable {
 		try {
 			logger.info("********* Inside readConfigFile *****");
 			objClass = new DaffIESchedularConfigurator().getSchedules(type, fileName);
-			// Initially the method readFile() was called. Changed by Harsh for the 
+			// Initially the method readFile() was called. Changed by Naveen for the 
 			// support of Multiple scheduling.
 		} catch (scheduleFileReaderException e) {
 			throw new IOException(e.getCause()+" "+e.getMessage());

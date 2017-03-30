@@ -27,16 +27,19 @@ public class MetadataProcessorFactory {
 		if (extension.equalsIgnoreCase("xls")) {
 			MetadataReader metadatatreader = new ExcelMetadataReader(filePath,
 					fileName);
+			System.out.println("Naveen:"+filePath+fileName);
 			return metadatatreader;
 		}
 		if (extension.equalsIgnoreCase("csv")) {
 			MetadataReader metadatatreader = new CSVMetadataReader(filePath,
 					fileName);
+			System.out.println("Naveen:"+filePath+fileName);
 			return metadatatreader;
 		}
 		if (extension.equalsIgnoreCase("xml")) {
 			MetadataReader metadatareader = new XMLMetadataReader(filePath,
 					fileName);
+			//System.out.println("Naveen:"+filePath+fileName+extension);
 			return metadatareader;
 		}
 		return null;

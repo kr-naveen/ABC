@@ -60,7 +60,8 @@ public class XMLMetadataReader implements MetadataReader {
 	}
 
 	private void initConnection() throws DMetadataReadException{
-		String driver = "jdbc:ashpool:file://" + filePath;
+		//String driver = "jdbc:ashpool:file://" + filePath;
+		String driver = "jdbc:ashpool:file://" +"C:\\Users\\daffodil-50\\Documents\\zzzz\\Export_29062016_057.xml";
 
 		try {
 			Class.forName("com.rohanclan.ashpool.jdbc.Driver");
@@ -495,6 +496,7 @@ public class XMLMetadataReader implements MetadataReader {
                }
             }
             metadatRows.add(attributesMap);
+            System.out.println("Naveen:"+metadatRows);
             return metadatRows;
             
 		} catch (Exception e) {

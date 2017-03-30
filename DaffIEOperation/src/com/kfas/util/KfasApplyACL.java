@@ -60,7 +60,7 @@ public class KfasApplyACL {
 							if(Id!=null && Id!=" "){
 								docACL =(IDfACL)session.getObject(new DfId(Id));
 								System.out.println("Going to Apply Document ACL on folder :");				
-								applyACLOnFolder(session,docACL,destination_path);
+								//applyACLOnFolder(session,docACL,destination_path);
 							}
 						}										
 				    }

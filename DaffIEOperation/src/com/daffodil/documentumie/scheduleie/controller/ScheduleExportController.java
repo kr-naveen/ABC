@@ -37,9 +37,8 @@ public class ScheduleExportController {
 					schedulExportConfigBean.getPassword(),
 					schedulExportConfigBean.getDomain());
 		} catch (DDfException e) {
-			getIeLogger().writeLog(
-					"while creating session from docbase in export proces "
-							+ e.getMessage() + e.getCause(), IELogger.DEBUG);
+			System.out.println("while creating session from docbase in export proces "+ e.getMessage() + e.getCause());
+			getIeLogger().writeLog("while creating session from docbase in export proces "+ e.getMessage() + e.getCause(), IELogger.DEBUG);
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -49,6 +48,7 @@ public class ScheduleExportController {
 		try {
 			configBean = (ExportConfigBean) DaffIEConfigurator
 					.read(DaffIEConfigurator.EXPORT);
+			
 			ieLogger = new IELogger(configBean);
 		} catch (DConfigReadException e) {
 			e.printStackTrace();
@@ -61,6 +61,7 @@ public class ScheduleExportController {
 		initiallize(schedulExportConfigBean);
 		exportProcessor.setEScheduleConfigBean(scheduleConfgiBean);
 		doExport();
+		System.out.println("Now Start Export");
 	}
 
 	private void doExport() {

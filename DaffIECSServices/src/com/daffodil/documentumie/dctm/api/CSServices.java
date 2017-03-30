@@ -94,7 +94,8 @@ public interface CSServices {
 
 	public List executeDQLObject(String dqlString, String objectType)
 			throws DDfException;
-
+	public List executeDQLObject(String dqlString, String objectType,int lower,int upper)
+			throws DDfException;
 	public String getFileNameByID(Object docId, boolean version,
 			String extension) throws DDfException;
 
@@ -109,6 +110,10 @@ public interface CSServices {
 	public void createAcl(String aclName, String formType, String region, String amcId)
 			throws DDfException;
 	public IDfSession getSession() throws DDfException;
+	
+	//By Naveen
+	
+	public int getTotalObject(String objectType) throws DDfException;
 	//public void exportToFTP(String destPath, String fileName , String ftpPath) throws DDfException;
 	//This LIne Added By Bablu
 	//public IDfSysObject getObjectById(IDfId obj);

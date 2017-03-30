@@ -15,9 +15,10 @@ public class DaffIEUtilityService {
 			main.doStart();
 		}
 		else{*/
-			new ImportExportMain().showIEUI(1);
+		//	new ImportExportMain().showIEUI(1);
 		/*}*/
-		
+			DaffIEUtilityScheduler main = DaffIEUtilityScheduler.getInstance();
+			//main.doStart();
 	}	
 	
 	/*

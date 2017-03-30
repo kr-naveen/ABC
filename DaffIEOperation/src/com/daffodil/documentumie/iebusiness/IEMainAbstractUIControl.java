@@ -12,6 +12,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,6 +33,7 @@ import com.daffodil.documentumie.fileutil.configurator.exception.DConfigWriteExc
 import com.daffodil.documentumie.fileutil.logger.IELogger;
 import com.daffodil.documentumie.fileutil.metadata.api.MetadataReader;
 import com.daffodil.documentumie.fileutil.metadata.api.MetadataWriter;
+import com.daffodil.documentumie.scheduleie.model.apiimpl.DaffIEUtilityService;
 
 public abstract class IEMainAbstractUIControl extends JPanel {
 
@@ -154,7 +157,6 @@ public abstract class IEMainAbstractUIControl extends JPanel {
 				back_JButton.setVisible(false);
 				start_JButton.setVisible(false);
 				cancel_JButton.setVisible(false);
-
 				stop_JButton.setVisible(true);
 				viewLog_JButton.setVisible(true);
 				finish_JButton.setVisible(true);
@@ -163,7 +165,6 @@ public abstract class IEMainAbstractUIControl extends JPanel {
 				setStopButtonEnabled(true);
 				setViewButtonEnabled(false);
 				setFinishButtonEnabled(false);
-
 				boolean bool = validateInput(abUIControl[uIIndex].hideUI(),
 						abUIControl[uIIndex].CheckException());
 				if (bool) {
@@ -174,7 +175,6 @@ public abstract class IEMainAbstractUIControl extends JPanel {
 		});
 		
 		schedule_JButton.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("inside schedule button...............");
@@ -198,9 +198,67 @@ public abstract class IEMainAbstractUIControl extends JPanel {
 				if (bool) {
 					int i = promptUserScheduleProcess();
 					if (i == JOptionPane.YES_OPTION) {
+//					Thread t=new Thread(new Runnable() {
+//						
+//						@Override
+//						public void run() {
+//							String separator = System.getProperty("file.separator");
+//						    String classpath = System.getProperty("java.class.path");
+//						    System.out.println( System.getProperty("java.home"));
+//						    System.out.println(classpath);
+//						    String path = System.getProperty("java.home")
+//						            + separator + "bin" + separator + "java";
+//						    System.out.println(DaffIEUtilityService.class.getCanonicalName());
+//						    System.out.println(path);
+//						    System.out.println(classpath.split(";")[0]);
+//						    ProcessBuilder processBuilder =
+//						            new ProcessBuilder(path, "-cp", 
+//						            		classpath, 
+//						            		DaffIEUtilityService.class.getCanonicalName());
+//						   // processBuilder.directory(new File("D:\\ZZ_04-07-2016"));
+//						    try {
+//								Process process = processBuilder.start();
+//								  int exitValue = process.waitFor();
+//							        System.out.println("\n\nExit Value is " + exitValue);
+//							} catch (IOException e1) {
+//								// TODO Auto-generated catch block
+//								System.out.println(e1.getMessage());
+//							} catch (InterruptedException e1) {
+//								// TODO Auto-generated catch block
+//								System.out.println(e1.getMessage());
+//							}
+//						}
+//					});
+//					t.start();
+						//Naveen 07/01/2016					
+//						try {
+//							java.io.File f=new java.io.File("BatchFile.bat");
+//					        java.io.FileWriter fout=new java.io.FileWriter(f);
+//					        fout.write("");
+//					        fout.flush();fout.close();
+//					        } catch (Exception em) {
+//					            em.printStackTrace();
+//					        }
 						showIEIntroUIControl();
+						//Naveen 07/01/2016
 					}else{
+						//Naveen 07/01/2016
+//						try {
+//					        Thread hook = new Thread() { public void run() { new DaffIEUtilityService().startService();; } };
+//					            hook.setDaemon(true);
+//					            Runtime.getRuntime().addShutdownHook(hook);
+//					          hook.start();
+//					           
+//					           
+//					        } catch (Exception em) {
+//					            em.printStackTrace();
+//					        }
+						 
+						
+						//Naveen 07/01/2016
+						
 						System.exit(0);
+						
 					}
 				}
 			}

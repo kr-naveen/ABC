@@ -19,7 +19,7 @@ public static Properties loadUtilityConfigPropertyFile(){
 		String currentdir = System.getProperty("user.dir");
 		//ResourceBundle myResources =ResourceBundle.getBundle("UtilityConfiguration.properties");
 		        
-		InputStream in = PropertyFileLoader.class.getResourceAsStream("/com/nokia/properties/UtilityConfiguration.properties");
+		InputStream in = PropertyFileLoader.class.getResourceAsStream("/UtilityConfiguration.properties");
 		// The below commented code is the Working code.
 		String propertyFile = currentdir.substring(0,currentdir.lastIndexOf("\\"))+"/DaffIEUtility/UtilityConfiguration.properties";
 		//String propertyFile = currentdir.substring(0,currentdir.lastIndexOf("\\"))+"/nlsbundle/UtilityConfiguration.properties";
@@ -46,7 +46,7 @@ public static void main(String[] args) {
 }
 public   void testMeth()
 {
-	InputStream in = this.getClass().getResourceAsStream("/com/nokia/properties/UtilityConfiguration.properties");
+	InputStream in = this.getClass().getResourceAsStream("/UtilityConfiguration.properties");
     try {
     	utility_config_properties.load(in);
     } catch (IOException e) {

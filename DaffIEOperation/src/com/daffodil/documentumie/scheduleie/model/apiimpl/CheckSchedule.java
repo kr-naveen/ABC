@@ -329,7 +329,7 @@ public class CheckSchedule {
 		try {
 			logger.info("********* Inside readConfigFile *****");
 			objClass = new DaffIESchedularConfigurator().getSchedules(type, fileName);
-			// Initially the method readFile() was called. Changed by Harsh for the 
+			// Initially the method readFile() was called. Changed by Naveen for the 
 			// support of Multiple scheduling.
 		} catch (scheduleFileReaderException e) {
 			e.printStackTrace();

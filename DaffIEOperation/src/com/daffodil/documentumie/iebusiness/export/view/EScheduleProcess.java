@@ -283,8 +283,14 @@ public class EScheduleProcess extends AbstractUIControl {
 		}
 		else{
 			int hrs = Integer.parseInt(String.valueOf(hr_JComboBox.getSelectedItem()));
+			int min=Integer.parseInt(String.valueOf(min_JComboBox.getSelectedItem()));
+			System.out.println("Naveen:"+new Date(startDate.getYear(), startDate.getMonth(), startDate
+					.getDate(), hrs, min));
+			System.out.println("Naveen:"+new Date(
+							currentDate.getYear(), currentDate.getMonth(), currentDate
+							.getDate(), currentDate.getHours(), currentDate.getMinutes()));
 			int i = (new Date(startDate.getYear(), startDate.getMonth(), startDate
-					.getDate(), hrs, 0)).compareTo(new Date(
+					.getDate(), hrs, min)).compareTo(new Date(
 							currentDate.getYear(), currentDate.getMonth(), currentDate
 							.getDate(), currentDate.getHours(), currentDate.getMinutes()));
 			System.out.println("in validaet i = " + i);
@@ -328,8 +334,7 @@ public class EScheduleProcess extends AbstractUIControl {
 				} else {
 					scheduleErrorMessage.append("and ");
 				}
-				scheduleErrorMessage
-				.append("End Date is less than the Start Date.");
+				scheduleErrorMessage.append("End Date is less than the Start Date.");
 			}		
 		}
 		if(fileSystem_JRadioButton!=null && fileSystem_JRadioButton.isSelected())

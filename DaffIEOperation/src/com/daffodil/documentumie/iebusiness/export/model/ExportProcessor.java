@@ -13,7 +13,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.JOptionPane;
+
+import org.omg.SendingContext.RunTime;
+
 import jxl.Workbook;
+import jxl.WorkbookSettings;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -134,7 +139,7 @@ public class ExportProcessor {
 		if(extension.equalsIgnoreCase("xls")){
 			creaeXLSFile(path, extension);
 		}if(extension.equalsIgnoreCase("csv")){
-			System.out.println("creaeCSVFile");
+			//System.out.println("creaeCSVFile");
 			creaeCSVFile(path, extension);
 		}if(extension.equalsIgnoreCase("xml")){
 			creaeXMLFile(path, extension);
@@ -145,12 +150,60 @@ public class ExportProcessor {
 		 */
 		String dqlString = ""; 
 		dqlString = prepareDql();
-		System.out.println("DQL String"+dqlString);
-		List metadatalist =  getCsServiceProvider().executeDQLObject(dqlString, exportServiceBean.getObjectType());
-		System.out.println("---metadatalist-------"+metadatalist);
-	
-		getIELogger().writeLog("metadatalist= "+metadatalist, IELogger.DEBUG); //---------------------------------
-		
+		//System.out.println("DQL String--->>"+dqlString);
+		List metadatalist=null;
+		//Logic For all Only Naveen
+		metadatalist =  getCsServiceProvider().executeDQLObject(dqlString, exportServiceBean.getObjectType());
+		//logic Naveen
+//		int choice=JOptionPane.showConfirmDialog(null,"Do you want to Select all Document to Export (Yes)/Base On Limit (No)","Export Confirmation",JOptionPane.YES_NO_OPTION);
+//		switch(choice){
+//		case 0:
+//			 metadatalist =  getCsServiceProvider().executeDQLObject(dqlString, exportServiceBean.getObjectType());
+//			//System.out.println("---metadatalist-------"+metadatalist);
+//			//System.out.println("---metadatalist No of Records-------"+metadatalist.size());
+//			getIELogger().writeLog("metadatalist= "+metadatalist, IELogger.DEBUG); //---------------------------------
+//			break;
+//		case 1:
+//			int lower=0,upper=0;
+//			try{
+//			lower=Integer.parseInt(JOptionPane.showInputDialog("Enter from Limit"));
+//			upper=Integer.parseInt(JOptionPane.showInputDialog("Enter to Limit"));
+//			//add by Naveen
+//			if(lower>upper){
+//				JOptionPane.showMessageDialog(null, "Lower limit grater then Upper limit");
+//				System.gc();
+//				setExportFinished(true);
+//				return;
+//			}else if(lower<0){
+//				JOptionPane.showMessageDialog(null, "Lower limit less then zeero");
+//				System.gc();
+//				setExportFinished(true);
+//				return;
+//			}else if(upper>getCsServiceProvider().getTotalObject(exportServiceBean.getObjectType())){
+//					JOptionPane.showMessageDialog(null, "Upper limit grater then total count");
+//					System.gc();
+//					setExportFinished(true);
+//					return;
+//				}
+//			}catch(Exception ex){
+//				JOptionPane.showMessageDialog(null, "Value is not valid");
+//				System.gc();
+//				setExportFinished(true);
+//				return;
+//			}
+//			//logic Naveen
+//		    metadatalist =  getCsServiceProvider().executeDQLObject(dqlString, exportServiceBean.getObjectType(),lower,upper);
+//			//System.out.println("---metadatalist-------"+metadatalist);
+//			//System.out.println("---metadatalist No of Records-------"+metadatalist.size());
+//			getIELogger().writeLog("metadatalist= "+metadatalist, IELogger.DEBUG); //---------------------------------
+//			break;
+//		default:
+//			System.gc();
+//			setExportFinished(true);
+//			return;
+//		}
+//		
+		//Logic Naveen
 		Object id;
 		success = 0;
 		failure = 0;
@@ -185,7 +238,7 @@ public class ExportProcessor {
 				getIELogger().writeLog("inputValue is   "+ inputValue, IELogger.DEBUG);
 
 			}else{
-				System.out.println("************************************************************");
+				//System.out.println("************************************************************");
 				getMetadataWriter().wirteAttributes(attributesForExport);
 			}
 			
@@ -198,13 +251,14 @@ public class ExportProcessor {
 
 		// Export Process start
 		int noOfRecordsForExport = metadatalist.size();
+	//	System.out.println("noOfRecordsForExport--->"+noOfRecordsForExport);
 		getIELogger().writeLog("noOfRecordsForExport in Report File "+ noOfRecordsForExport, IELogger.DEBUG); 
 		/*if(noOfRecordsForExport > 100){
 			noOfRecordsForExport = 100;
 		}*/
 		String processorType = PropertyFileLoader.loadUtilityConfigPropertyFile().getProperty(getExportServiceBean().getObjectType() + "_exportProcessor");
-		System.out.println("getExportServiceBean().getObjectType()--"+getExportServiceBean().getObjectType());
-		System.out.println("Processor type in Export Processor is--"+processorType);
+		//System.out.println("getExportServiceBean().getObjectType()--"+getExportServiceBean().getObjectType());
+		//System.out.println("Processor type in Export Processor is--"+processorType);
 		
 		getIELogger().writeLog("getExportServiceBean().getObjectType()-- "+ getExportServiceBean().getObjectType(), IELogger.DEBUG);
 		getIELogger().writeLog("Processor type in Export Processor is---- "+ processorType, IELogger.DEBUG);
@@ -212,7 +266,7 @@ public class ExportProcessor {
 		if (processorType != null) {
 			businessProcessor = LoadProcessor(processorType, businessProcessor);
 		}
-		
+		///System.out.println("objectDoc---"+objectDoc+"--noOfRecordsForExport--"+noOfRecordsForExport);
 		for(int objectDoc = 0 ; objectDoc < noOfRecordsForExport ; objectDoc++){
 			while (isRequestedForExportStopped()) {
 				try {
@@ -223,15 +277,13 @@ public class ExportProcessor {
 			}
 
 			if (!isExportCancelled()) {
-				System.out.println("*exportServiceBean.isOnlyMetadata()"+exportServiceBean.isOnlyMetadata());
-				System.out.println("*exportServiceBean.isAllVersion()"+exportServiceBean.isAllVersion());
-				System.out.println("*exportServiceBean.isExportIntoZIP()"+exportServiceBean.isExportIntoZIP());
+				//System.out.println("*exportServiceBean.isOnlyMetadata()"+exportServiceBean.isOnlyMetadata());
+				//System.out.println("*exportServiceBean.isAllVersion()"+exportServiceBean.isAllVersion());
+				//System.out.println("*exportServiceBean.isExportIntoZIP()"+exportServiceBean.isExportIntoZIP());
 				processCounter = objectDoc+1;
 				HashMap map = (HashMap) metadatalist.get(objectDoc);
 				setProgressBarCurrentValue(processCounter);
-				
 				getIELogger().writeLog("processCounter is- "+ processCounter, IELogger.DEBUG);
-				
 				id = map.get("r_object_id");
 				getIELogger().writeLog("map "+ map, IELogger.DEBUG); 
 				getIELogger().writeLog("id "+ id, IELogger.DEBUG); 
@@ -245,7 +297,7 @@ public class ExportProcessor {
 				}
 				
 				if (exportServiceBean.isOnlyMetadata()) {
-					System.out.println("*exportServiceBean.isOnlyMetadata()"+exportServiceBean.isOnlyMetadata());
+					//System.out.println("*exportServiceBean.isOnlyMetadata()"+exportServiceBean.isOnlyMetadata());
 					String object_name = (String) map.get("object_name");
 					getIELogger().writeLog("object_name is-- "+ object_name, IELogger.DEBUG);
 					setCurrentlyProcessingFileName(object_name);
@@ -266,7 +318,9 @@ public class ExportProcessor {
 				} catch (InterruptedException e) {
 					getIELogger().writeLog(e.getMessage() + e.getCause(),IELogger.ERROR);
 				}
+				System.gc();
 				map.clear();
+			
 			}
 			
 		}
@@ -331,7 +385,7 @@ public class ExportProcessor {
 		String reportFileLocation = path+"\\";
 		String reportFileName = "Export_" + IEUtility.getDateAndTimeString()+ ".xml";
 		reportFileGlobalPath = reportFileLocation+reportFileName;
-		System.out.println("--reportFileGlobalPath-->"+reportFileGlobalPath);
+		//System.out.println("--reportFileGlobalPath-->"+reportFileGlobalPath);
 		initXMLMetadataWriter(reportFileLocation, reportFileName, extension);
 	}
 
@@ -348,7 +402,7 @@ public class ExportProcessor {
 		String reportFileLocation = path+"\\";
 		String reportFileName = "Export_" + IEUtility.getDateAndTimeString() + ".csv";
 		reportFileGlobalPath =reportFileLocation+reportFileName;
-		System.out.println("reportFileName-->"+reportFileName+"--reportFileLocation-->"+reportFileLocation);
+		//System.out.println("reportFileName-->"+reportFileName+"--reportFileLocation-->"+reportFileLocation);
 		initCSVMetadataWriter(reportFileLocation, reportFileName, extension);
 
 	}
@@ -377,7 +431,10 @@ public class ExportProcessor {
 		getIELogger().writeLog("reportFileName "+ reportFileName, IELogger.DEBUG); 
 		
 		try {
-			workbook = Workbook.createWorkbook(new File(reportFileName));
+			WorkbookSettings ws=new WorkbookSettings();
+			ws.setEncoding("utf-8");
+
+			workbook = Workbook.createWorkbook(new File(reportFileName),ws);
 			worksheet = workbook.createSheet(exportServiceBean.getObjectType(), 0);
 			if(System.getProperty("os.name").contains("Window"))
 			{
@@ -486,7 +543,7 @@ public class ExportProcessor {
 	private void exportAccordingToType(Object doc_id, HashMap objectMap, boolean version){
 		String fileName = null;
 		String dosExtension;
-		System.out.println("DOC ID is:-"+doc_id.toString());
+		//System.out.println("DOC ID is:-"+doc_id.toString());
 		/*if(doc_id.toString().equals("090f42408002c41b"))
 		{
 			doc_id = "090f424080042e0e";
@@ -504,9 +561,9 @@ public class ExportProcessor {
 		//String destPath = contentPath+"/"+folderPath;// Initially this was the destination path 
 		String destPath = contentPath;// Now this is the destination path
 		
-		System.out.println("Metadata File Path Export Processor is:"+metadataPath+":");
-		System.out.println("Output Directory Path is:"+contentPath+":");
-		System.out.println("Dest Path in Export Processor is"+destPath);
+		//System.out.println("Metadata File Path Export Processor is:"+metadataPath+":");
+		//System.out.println("Output Directory Path is:"+contentPath+":");
+		//System.out.println("Dest Path in Export Processor is"+destPath);
 		
 		
 		getIELogger().writeLog("exportType is  -- "+ exportType, IELogger.DEBUG);
@@ -528,13 +585,13 @@ public class ExportProcessor {
 				File_for_ZIP.add(fileName);
 				objectMap.put("r_folder_path", folderPath);
 				if(!getExportServiceBean().isExportIntoZIP()){
-				objectMap.put("file_source_location__", metadataPath);
+				objectMap.put("file_source_location__", metadataPath+"\\"+fileName);
 				//objectMap.put("file_source_location__", tempDirPath+"/"+fileName);//---------------------------------------------
 				}
 				objectMap.put("Export_Status", "Export Proceess Successfuly Completed");
 				objectMap.put("Error_Description", "");
 				
-				System.out.println("***objectMap for native path***"+objectMap);
+				//System.out.println("***objectMap for native path***"+objectMap);
 				getIELogger().writeLog("objectMap for native path  -- "+ objectMap, IELogger.DEBUG);
 				
 				writeToReportFile(objectMap);
@@ -550,13 +607,13 @@ public class ExportProcessor {
 					File_for_ZIP.add(fileName);
 					objectMap.put("r_folder_path", folderPath);
 					if(!getExportServiceBean().isExportIntoZIP()){
-						objectMap.put("file_source_location__", metadataPath);
+						objectMap.put("file_source_location__", metadataPath+"\\"+fileName);
 					//objectMap.put("file_source_location__", tempDirPath+"/"+fileName);//--------------------------------------
 					}
 					objectMap.put("Export_Status", "Export Proceess Successfuly Completed");
 					objectMap.put("Error_Description", "");
 					
-					System.out.println("***objectMap for rendition***"+objectMap);
+					//System.out.println("***objectMap for rendition***"+objectMap);
 					getIELogger().writeLog("objectMap for rendition  -- "+ objectMap, IELogger.DEBUG);
 					
 					writeToReportFile(objectMap);
@@ -568,7 +625,7 @@ public class ExportProcessor {
 				csServiceProvider.exportObject(doc_id, tempDirPath, fileName,destPath);
 				objectMap.put("r_folder_path", folderPath);
 				if(!getExportServiceBean().isExportIntoZIP()){
-					objectMap.put("file_source_location__", metadataPath);
+					objectMap.put("file_source_location__", metadataPath+"\\"+fileName);
 				//objectMap.put("file_source_location__", tempDirPath+"/"+fileName);//----------------------------
 				}
 				objectMap.put("Export_Status", "Export Proceess Successfuly Completed");
@@ -585,14 +642,14 @@ public class ExportProcessor {
 					csServiceProvider.exportObject(doc_id, tempDirPath, fileName,destPath);
 					objectMap.put("r_folder_path", folderPath);
 					if(!getExportServiceBean().isExportIntoZIP()){
-						objectMap.put("file_source_location__", metadataPath);
+						objectMap.put("file_source_location__", metadataPath+"\\"+fileName);
 					//objectMap.put("file_source_location__", tempDirPath+"/"+fileName);//--------------------------------------
 					}
 					objectMap.put("Export_Status", "Export Proceess Successfuly Completed");
 					objectMap.put("Error_Description", "");
 					
 					getIELogger().writeLog("objectMap for both  -- "+ objectMap, IELogger.DEBUG);
-					System.out.println("***objectMap for both***"+objectMap);
+					//System.out.println("***objectMap for both***"+objectMap);
 					
 					writeToReportFile(objectMap);
 					File_for_ZIP.add(fileName);
@@ -602,7 +659,7 @@ public class ExportProcessor {
 		catch (DDfException e) {
 			objectMap.put("r_folder_path", folderPath);
 			if(!getExportServiceBean().isExportIntoZIP()){
-				objectMap.put("file_source_location__", metadataPath);
+				objectMap.put("file_source_location__", metadataPath+"\\"+fileName);
 			//objectMap.put("file_source_location__", tempDirPath+fileName);//---------------------------------------
 			}
 			objectMap.put("Export_Status", "Export Proceess Failed");
@@ -675,8 +732,8 @@ public class ExportProcessor {
 			setProgressBarCurrentValue(temp);
 			String destZipLocation = getExportServiceBean().getOutPutFile()+File.separator+"_temp_"+".zip";
 			String srcFolderLocation = getExportServiceBean().getOutPutFile();// "c:/Documentum/_temp_";
-			System.out.println("temp--"+temp);
-			System.out.println("destZipLocation---"+destZipLocation+"    srcFolderLocation--"+srcFolderLocation);
+			//System.out.println("temp--"+temp);
+			//System.out.println("destZipLocation---"+destZipLocation+"    srcFolderLocation--"+srcFolderLocation);
 			
 			try {
 				CreatingZip(srcFolderLocation, destZipLocation);
@@ -685,7 +742,7 @@ public class ExportProcessor {
 					folder.delete();
 				}
 			} catch (Exception e) {
-				System.out.println("EXCEPTION"+e);
+				//System.out.println("EXCEPTION"+e);
 				//getIELogger().writeLog("Exception -- "+ e.getMessage()+" "+e.getCause(), IELogger.DEBUG);
 				throw new DDfException(e.getMessage(), e.getCause());
 				
@@ -746,7 +803,7 @@ public class ExportProcessor {
 			if (path.equals("") && !fileName.endsWith("zip")) {
 				addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
 			} else {
-				System.out.println(path + "/" + folder.getName()+ srcFolder + "/" + fileName);
+				//System.out.println(path + "/" + folder.getName()+ srcFolder + "/" + fileName);
 				//addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip);
 			}
 		}
