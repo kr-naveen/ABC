@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DaffIECSServices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DaffIEUtility"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/certjFIPS.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/commons-net.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/commons-vfs-1.0.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/dfc.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/iText-2.1.5.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itextpdf-5.1.3.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itextpdf-5.1.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itextpdf-5.1.3-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itext-xtra-5.1.3.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itext-xtra-5.1.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/itext-xtra-5.1.3-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jsafeFIPS.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jsch-0.1.31.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jxl.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jxl_2.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/log4j.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/log4j_2.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/log4j_3.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/org.apache.commons.logging.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/pdfbox-app-1.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/Pallavi/Pallavi/IEUtility-mdocs/UTILITY111111/DaffodilIEUtility_lib/jdbc.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

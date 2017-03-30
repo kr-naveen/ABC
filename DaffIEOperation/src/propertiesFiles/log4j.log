@@ -1,0 +1,135 @@
+1500 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1500 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+32734 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+56109 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+56172 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+65703 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+67906 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+77218 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+77281 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+85937 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=no, r_folder_path=/DAFF/import/IE/new/, object_name=rangoli, file_source_location__=D:\\data\\jyoti\\personaldata\\Daff Rangoli\\Daff Rangoli\\NK & JT.jpg}
+85968 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - no  version
+91656 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=null, r_folder_path=/DAFF/import/IE/new/, object_name=v, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+91672 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - null  version
+107078 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+1500 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1500 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+27453 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1531 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1531 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+13141 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+32531 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+32531 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+61359 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+63406 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+72141 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+72172 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+84438 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=no, r_folder_path=/DAFF/import/IE/new/, object_name=rangoli, file_source_location__=D:\\data\\jyoti\\personaldata\\Daff Rangoli\\Daff Rangoli\\NK & JT.jpg}
+84453 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - no  version
+98938 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=null, r_folder_path=/DAFF/import/IE/new/, object_name=v, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+99000 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - null  version
+108313 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=a, r_folder_path=/DAFF/import/IE/new/, object_name=b, file_source_location__=C:\\Documents and Settings\\All Users\\Documents\\My Pictures\\Sample Pictures\\Water lilies.jpg}
+108344 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - a  version
+113719 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=fllower, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+113719 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+120500 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=fllow11, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\images\\green.jpg}
+120547 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+129234 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=afd, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+129297 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+135922 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=fllo12, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+135938 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+142688 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=fllow13, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\images\\flower1.jpg}
+142703 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+1500 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1500 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+2734 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+2765 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+16625 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+34156 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+34218 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+41781 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+45093 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+51171 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+51218 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+63843 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+65187 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Import UI Initlized
+69687 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1516 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1516 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+19063 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+33891 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+33891 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+42750 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+44141 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+49469 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+49485 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+1516 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1516 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+10157 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1547 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1547 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+1516 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1516 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+9172 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1515 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1515 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+9765 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+25578 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+25594 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+35187 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+36797 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+44890 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+44906 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+50000 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=no, r_folder_path=/DAFF/import/IE/new/, object_name=rangoli, file_source_location__=D:\\data\\jyoti\\personaldata\\Daff Rangoli\\Daff Rangoli\\NK & JT.jpg}
+50000 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - no  version
+64750 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+65719 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Import UI Initlized
+70109 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1516 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1516 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+9516 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+26906 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+26922 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+36094 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+37828 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+44078 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+44094 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+74391 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+76469 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Import UI Initlized
+81563 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+1500 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1516 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+29672 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+47375 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+47391 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+59047 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+74016 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+88422 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+88438 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+110016 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+1641 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1641 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+12828 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+170172 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+170188 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+182391 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+183797 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+195844 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+1515 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1515 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+10734 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+41625 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+41640 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+53281 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+54625 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+63125 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
+1515 [AWT-EventQueue-0] ERROR com.documentum.fc.common.impl.logging.LoggingConfigurator  - Problem locating log4j configuration
+1515 [AWT-EventQueue-0] WARN com.documentum.fc.common.impl.logging.LoggingConfigurator  - Using default log4j configuration
+8906 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing preInilize
+30906 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - passing PostInilize
+30906 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - Passing. preinilize of IFieldMapping
+38703 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=book, file_source_location__=D:\data\jyoti\personaldata\jyoti data\jyoti\eBooks\\creating_java_method_server_in_documentum.pdf}
+40062 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+44875 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - rows  {is_minor__=yes, r_folder_path=/DAFF/import/IE/new/, object_name=kkkkk, file_source_location__=D:\\data\\jyoti\\personaldata\\jyoti data\\jyoti\\Songs\\01 agar tum mil jao .mp3}
+44890 [Thread-11] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - yes  version
+52203 [AWT-EventQueue-0] DEBUG com.daffodil.documentumie.fileutil.logger.IELogger  - UIIndex -1
